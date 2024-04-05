@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import CardTeaser from "~/components/CardTeaser.vue";
+import CardTeaser from "~/components/ColumnCardTeaser.vue";
 import { defineProps, computed } from "vue";
 
 const props = defineProps({
