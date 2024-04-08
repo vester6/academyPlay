@@ -13,7 +13,6 @@
   <script setup>
   import { ref } from "vue";
   import TeaserList from "~/components/ColumnGrid.vue";
-  import FlipCardContainer from "~/components/FlipCardContainer.vue";
   
   // Define your reactive data using ref()
   const teasersData = ref([
