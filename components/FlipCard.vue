@@ -1,77 +1,54 @@
 <template>
-  <div class="flip-card" @click="toggleFlip">
-    <div class="flip-card-inner" :class="{ flipped: isFlipped.value }">
-      <div class="flip-card-front">
-        <img
-          v-if="frontImageUrl"
-          :src="frontImageUrl"
-          alt="Front Image"
-          class="card-image"
-        />
-        <p class="card-text">{{ frontText }}</p>
+  <div class="flip" @click="toggleFlip">
+    <div class="card" :class="{ flipped: isFlipped }">
+      <div class="face front">
+        <slot name="front">Front2</slot>
       </div>
-      <div class="flip-card-back">
-        <img
-          v-if="backImageUrl"
-          :src="backImageUrl"
-          alt="Back Image"
-          class="card-image"
-        />
-        <p class="card-text">{{ backText }}</p>
+      <div class="face back">
+        <slot name="back">Back2</slot>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const isFlipped = ref(false);
 
-// Props
-const frontImageUrl = undefined; // Optional
-const frontText = String;
-const backImageUrl = undefined; // Optional
-const backText = String;
-
-const toggleFlip = () => {
+function toggleFlip() {
   isFlipped.value = !isFlipped.value;
-};
+}
 </script>
 
-<style scoped>
-.flip-card {
-  width: 100%;
-  perspective: 1000px; /* Add perspective for 3D effect */
-}
-
-.flip-card-inner {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d; /* Preserve 3D effects */
-}
-
-.flip-card-inner.flipped {
-  transform: rotateY(180deg); /* Rotate the inner card */
-}
-
-.flip-card-front,
-.flip-card-back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden; /* Hide the back of the card */
-}
-
-.card-image {
-  width: 100%;
+<style>
+.flip {
+  width: 100%; /* To fill out the content area */
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 15px;
+  perspective: 800px;
   height: auto;
 }
 
-.card-text {
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
+.flip .card.flipped {
+  transform: rotateY(-180deg);
 }
+
+.flip .card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+
+
+
+.flip .card .back {
+  transform: rotateY(-180deg);
+  
+}
+
 </style>

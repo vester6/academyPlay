@@ -1,12 +1,13 @@
 <template>
-    <div>
-        
-      <p>flip pages</p>
-      
-    </div>
-  </template>
   
-  <script setup>
- 
-  </script>
+ <FlashcardSection />
   
+</template>
+
+<script setup>
+import FlashcardSection from '~/components/FlashcardSection.vue';
+</script>
+
+<style scoped>
+
+</style>
